@@ -1,0 +1,111 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!-- Formulaire pour une personne -->
+<%= form_for(@person) do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <!-- Pour choisir le type de la personne -->
+  <div class="field">
+    <% if current_person.type == 'Admin' %>
+        <%= f.label t('person.type_account') %>
+        <div>
+          <%= f.select(:type, options_for_select(Person::TYPES.map{|value| [value,value]}, :selected => f.object.type)) %>
+        </div>
+    <% end %>
+  </div>
+
+  <!-- Informations concernant une personne -->
+  <!-- Le prénom et le nom de famille peut être modifié que par l'administrateur.
+       Si on laisse à l'utilisateur changer ces paramètres, au moment de suggérer une video,
+       pour l'administrateur est difficile de retrouver une personne qui a modifié ses données.
+  -->
+  <% if current_person.type == 'Admin' %>
+    <div class="field">
+      <%= f.label t('person.lastname') %><br>
+      <%= f.text_field :lastname, :placeholder => t('person.lastname'), :autocomplete => :off %>
+    </div>
+    <div class="field">
+      <%= f.label t('person.firstname') %><br>
+      <%= f.text_field :firstname, :placeholder => t('person.firstname'), :autocomplete => :off  %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.label t('person.lastname') %><br>
+      <%= f.text_field :lastname, :placeholder => t('person.lastname'), :autocomplete => :off,:readonly => true %>
+    </div>
+    <div class="field">
+      <%= f.label t('person.firstname') %><br>
+      <%= f.text_field :firstname, :placeholder => t('person.firstname'), :autocomplete => :off,:readonly => true  %>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label t('person.password') %><br>
+    <%= f.password_field :password, :placeholder => t('person.password') %>
+  </div>
+  <div class="field">
+    <%= f.label t('person.confirm_password') %><br>
+    <%= f.password_field :password_confirmation, :placeholder => t('person.confirm_password') %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('person.email') %><br>
+    <%= f.text_field :email, :placeholder => t('person.email'), :autocomplete => :off %>
+  </div>
+  <div class="field">
+    <%= f.label t('person.dateofbirth') %><br>
+    <%= f.date_select(:dateofbirth,:start_year => Time.now.year,:end_year => Time.now.year - 100) %>
+  </div>
+  <div class="field">
+    <%= f.label t('person.private_phone') %><br>
+    <%= f.text_field :private_phone, :placeholder => t('person.private_phone'), :autocomplete => :off %>
+  </div>
+  <div class="field">
+    <%= f.label t('person.professional_phone') %><br>
+    <%= f.text_field :professional_phone, :placeholder => t('person.professional_phone'), :autocomplete => :off %>
+  </div>
+
+  <!-- On affiche les groupes (groupe et groupe personnel) que si on est administrateur -->
+  <% if current_person.type == 'Admin' %>
+      <div class="field">
+        <%= hidden_field_tag 'person[group_ids][]', nil %>
+        <%= f.label t('person.add_groups_label') %><br>
+        <% Group.all.each do |group| %>
+            <%= check_box_tag 'person[group_ids][]', group.id, group_present?(group.id)  %>
+            <%= group.name %><br>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <% if !(f.object.new_record?) %>
+            <%= hidden_field_tag 'personalgroup[right_ids][]', nil %>
+            <%= f.label t('person.add_extra_right_label') %><br>
+            <% Right.all.each do |right| %>
+                <%= check_box_tag 'personalgroup[right_ids][]', right.id, personal_right_present?(right.id)  %>
+                <%= right.name %><br>
+            <% end %>
+        <% end %>
+      </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

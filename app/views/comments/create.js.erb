@@ -1,0 +1,16 @@
+//#####################################
+//# Aldaz Jayro               HEPIA
+//#
+//#####################################
+
+
+//Une fois qu'on appuie sur Enter ou qu'on fait un Submit.
+$('#txt').keydown(function (e){
+    if(e.keyCode == 13){
+
+    }
+})
+// On efface le texte où on a mis le commentaire
+$('#new_comment_form')[0].reset();
+//le commentaire est ajouté dans la partie commentaires d'une vidéo
+$("#comments_div").html("<%= escape_javascript(render :partial => "video_clips/comments") %>");

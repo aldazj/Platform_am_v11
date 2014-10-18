@@ -1,0 +1,49 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Page qui affiche tous les commentaires associés à une vidéo  -->
+<div class="detailBox">
+  <div class="commentBox">
+    <p class="taskDescription"> <%= t('comment.comments_label') %></p>
+  </div>
+  <div class="actionBox">
+    <ul class="commentList">
+      <!-- On affiche un commentaire dans l'ordre descroissant (Liste LIFO)-->
+      <% if @video_clip.comments.size != 0 %>
+          <% @video_clip.comments.reverse.each  do |comment| %>
+              <!-- On affiche les messages qui ne sont pas considérés comme "inapproprié"-->
+              <% if comment.is_available? %>
+                  <li>
+                    <!-- Image commentaire -->
+                    <div class="commentImage">
+                      <%= image_tag 'user_profil.png' %>
+                    </div>
+                    <div class="commentBox">
+                      <!-- Commentaire -->
+                      <div class="commentText">
+                        <p class=""> <%= comment.message %> </p> <span class="date sub-text"> <%= comment.created_at %>  </span>
+                      </div>
+                      <!-- Informations concernant la personne qui a commenté la vidéo -->
+                      <div class="commentOwner">
+                        <% if !(comment.person_id.nil?) %>
+                            <% owner = Person.find_by_id(comment.person_id)%>
+                            <%#= owner.lastname.upcase+' '+owner.firstname %>
+                            <%= link_to owner.lastname.upcase+' '+owner.firstname, owner %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                  <div class="espace"></div>
+              <% end %>
+          <% end %>
+      <% else %>
+          <%= t('comment.no_comments_label') %>
+      <% end %>
+    </ul>
+    <%#= will_paginate @video_clip_comments %>
+  </div>
+</div>

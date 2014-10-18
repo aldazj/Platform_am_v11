@@ -1,0 +1,77 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('sendmail.title') %> <small><%= t('sendmail.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> <%= t('sendmail.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <% if flash[:notice] %>
+      <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <!-- Page qu envoie les emails -->
+  <div class="row">
+    <div class="col-md-5">
+      <%= form_for send_path :method => 'post'  do %>
+          <!-- Partie où on met le sujet du mail-->
+          <p>
+            <%= text_field_tag :subject, params[:subject], :size => 47, :autocomplete => :off, :placeholder => t('sendmail.subject'), class:'form-control' %>
+          </p>
+          <!-- Partie qu'utilise toutes les fichiers json crées -->
+          <p>
+            <%= label_tag :groups_tokens, t('group.title') %>
+            <%= text_field_tag :groups_tokens, "data-pre" => @groups.map(&:attributes).to_json %>
+            <%= label_tag :users_tokens, t('person.title') %><br>
+            <%= text_field_tag :users_tokens, "data-pre" => @people.map(&:attributes).to_json %>
+            <%= label_tag :videos_tokens, t('video_clip.videos_label') %><br>
+            <%= text_field_tag :videos_tokens, "data-pre" => @video_clips.map(&:attributes).to_json %>
+            <%= label_tag :message_email, t('comment.message') %>:<br />
+            <%= text_area_tag :message_email, nil, :cols => 46, :rows => 3, class:'form-control' %>
+          </p>
+          <p>
+            <%= submit_tag t('sendmail.send'), class: 'btn btn-large btn-primary'%>
+          </p>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- On fait l'autocompletion grâce au data-pre et les fichier json crées -->
+<!-- Voir la librarie JQuery tokeninput pour plus de détails: http://loopj.com/jquery-tokeninput/ -->
+<script>
+    $(function() {
+        $('#groups_tokens').tokenInput('/groups.json', {
+            crossDomain: false,
+            prePopulate: $('#groups_tokens').data('pre'),
+            theme: 'facebook'
+        });
+
+        $('#users_tokens').tokenInput('/people.json', {
+            propertyToSearch: 'name',
+            crossDomain: false,
+            prePopulate: $('#users_tokens').data('pre'),
+            preventDuplicates: true,
+            theme: 'facebook'
+        });
+
+        $('#videos_tokens').tokenInput('/video_clips.json', {
+            propertyToSearch: 'title',
+            hintText: 'Tape videos to send...',
+            crossDomain: false,
+            prePopulate: $('#videos_tokens').data('pre'),
+            preventDuplicates: true,
+            theme: 'facebook'
+        });
+    });
+</script>

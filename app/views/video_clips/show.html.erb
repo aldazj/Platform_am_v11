@@ -1,0 +1,144 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1> <%= t('video_clip.show.title') %> <small><%= t('video_clip.show.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('video_clip.show.title') %>  </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Affiche les messages envoyés par le controlleur -->
+  <% if flash[:notice] %>
+      <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <!-- Taille de la vidéo -->
+  <% height = 387%>
+  <% width = 640 %>
+
+  <div class="page">
+    <div class="video">
+      <div class="header>">
+        <!-- Titre de la vidéo -->
+        <div class="headerTitle">
+          <strong> <%= t('video_clip.title') %> </strong>
+          <%= @video_clip.title %>
+        </div>
+        <!-- Lien qui permet modifier une vidéo. On protège l'accès -->
+        <% if current_person.type == 'Admin' || current_person_is_video_owner?(@video_clip) %>
+            <div class="headerEdit">
+              <%= link_to t('video_clip.edit.title'), edit_video_clip_path(@video_clip) %>
+            </div>
+        <% end %>
+      </div>
+
+      <!-- Lecteur vidéo jwplayer-->
+      <div class="videocontainer">
+        <div class="player">
+            <%= jwplayer({ height: height,
+                           width: width,
+                           file: @file_video,
+                           image: @thumb_main.image.url(:original),
+                           title: @video_clip.title
+                         })
+            %>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="contentInfo">
+
+          <!-- Informations concernant la vidéo -->
+          <div class="description">
+            <p>
+              <strong> <%= t('video_clip.description') %></strong>
+              <%= @video_clip.description %>
+            </p>
+            <p>
+              <strong> <%= t('video_clip.created_at') %></strong>
+              <%= @video_clip.date %>
+            </p>
+            <p>
+              <strong><%= t('video_clip.views') %></strong>
+              <%= @video_clip.views %>
+            </p>
+
+            <p>
+              <strong><%= t('Owner') %>:</strong>
+              <i><%= @owner.lastname.upcase %></i>
+              <%= @owner.firstname %>
+            </p>
+          </div>
+
+          <div class="options">
+            <!-- On regarde si on a le droit de faire une action par example télécharger une vidéo -->
+            <% Right.all.each do |right| %>
+                <!-- D'abord on vérifie dans le droits du groupe personnel,
+                     ensuite les droits des groupes à qui une personne appartient
+                 -->
+                <% if right.name != 'Comment' && right.name != 'Upload'%>
+                    <al>
+                      <% if right_in_current_person_personalgroup?(right.name) %>
+                          <% if right.name == 'Download' %>
+                              <%= link_to right.name, download_video_clip_path(@video_clip), :alt => right.name %> |
+                          <% else %>
+                              <%= link_to right.name, '#', :alt => right.name %> |
+                          <% end %>
+                      <% else %>
+                          <% if current_person_groups_enable? %>
+                              <% if right_in_current_person_groups?(right.name) %>
+                                  <% if right.name == 'Download' %>
+                                      <%= link_to right.name, download_video_clip_path(@video_clip), :alt => right.name %> |
+                                  <% else %>
+                                      <%= link_to right.name, '#', :alt => right.name %> |
+                                  <% end %>
+                              <% end %>
+                          <% end %>
+                      <% end %>
+                    </al>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Également la partie qui permet de commenter une vidéo est controllée.
+             Même logique que le module ci-dessus.
+        -->
+        <div id="new_comment_form_div">
+            <% if right_in_current_person_personalgroup?('Comment') %>
+                <p>
+                  <%= form_for([@video_clip, @new_comment], :url => video_clip_comments_path(@video_clip, @new_comment), :html => { :id => 'new_comment_form'} ) do |f| %>
+                      <%= f.text_field :message, size:'89x3', class:'form-control' , id:'txt', placeholder: t('comment.name') %><br>
+                      <%= f.submit t('comment.submit_comment_label'), class:'btn btn-default' %>
+                  <% end %>
+                </p>
+                <!-- On affiche les commentaires d'une vidéo -->
+                <div id="comments_div"> <%= render 'comments'  %> </div>
+            <% else %>
+                <% if current_person_groups_enable? %>
+                    <% if right_in_current_person_groups?('Comment') %>
+                        <p>
+                          <%= form_for([@video_clip, @new_comment], :url => video_clip_comments_path(@video_clip, @new_comment), :html => {:id => 'new_comment_form'}) do |f| %>
+                              <%= f.text_field :message, size:'89x3', class:'form-control', id:'txt' , placeholder: t('comment.name'), :autocomplete => :off %><br>
+                              <%= f.submit t('comment.submit_comment_label'), class:'btn btn-default' %>
+                          <% end %>
+                        </p>
+                        <!-- On affiche les commentaires d'une vidéo -->
+                        <div id="comments_div"> <%= render 'comments'  %> </div>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

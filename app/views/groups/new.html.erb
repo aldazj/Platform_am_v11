@@ -1,0 +1,23 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1> <%= t('group.new.title') %><small> <%= t('group.new.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('group.new.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- On affiche le formulaire pour un groupe -->
+  <%= render 'form' %>
+
+  <%= link_to t('action.back'), groups_path, class:'btn btn-default' %>
+</div>

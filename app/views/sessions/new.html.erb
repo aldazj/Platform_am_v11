@@ -1,0 +1,33 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Page pour se connecter à la plate forme -->
+<div class="span8 offset3">
+<% provide(:title, 'Sign in') %>
+<% if flash[:error] %>
+    <div id="error_explanation">
+      <ul>
+        <%= flash[:error] %>
+      </ul>
+    </div>
+<% end %>
+
+<!-- Pour afficher les messages envoyés par le controlleur -->
+<% if flash[:notice] %>
+      <p id="error_explanation"><%= flash[:notice] %></p>
+<% end %>
+
+<h1>Sign in</h1>
+    <%= form_for(:session, url: sessions_path) do |f| %>
+        <%= f.label :email %><br>
+        <%= f.text_field :email, :placeholder => 'Your email..'  %><br>
+        <%= f.label :password %><br>
+        <%= f.password_field :password, :placeholder => 'Password'  %><br>
+        <p><%= link_to "forgotten password?", new_password_reset_path %></p>
+        <%= f.submit 'Sign in', class: 'btn btn-large btn-primary' %>
+    <% end %>
+</div>

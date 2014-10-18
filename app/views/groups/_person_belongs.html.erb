@@ -1,0 +1,45 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  On affiche toutes les personnes qui appartiennent à un groupe -->
+
+<% if @person_belong.size > 0 %>
+    <br>
+    <ol class="breadcrumb">
+      <li class="active"><i class="fa fa-dashboard"></i>  <%= t('person.belong_to_group_label') %> <%= @group.name %> </li>
+    </ol>
+    <table class="table table-bordered table-hover table-striped tablesorter">
+      <thead>
+      <tr>
+        <th><%= t('person.lastname') %> </th>
+        <th><%= t('person.firstname') %></th>
+        <th><%= t('person.email') %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @person_belong.each do |person| %>
+          <tr>
+            <td><%= person.lastname %></td>
+            <td><%= person.firstname %></td>
+            <td><%= person.email %></td>
+            <td><%= link_to t('action.show'), person %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @person_belong %>
+<% end %>
+
+<!--  Ajax/JQuery pour la pagination -->
+
+<script>
+    $(function(){
+        $('.pagination a').attr('data-remote', 'true')
+    });
+</script>
+<br>

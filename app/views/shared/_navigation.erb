@@ -1,0 +1,44 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Barre de Navigation -->
+<ul class="nav navbar-nav side-nav">
+  <!-- Que les administrateurs on accès à la partie administration -->
+  <% if current_person.type == Person::TYPES[0] %> <!-- TYPES[0] == Admin -->
+    <!-- Liens pour voir les videos -->
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('nav.nagivation.videos') %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to t('nav.nagivation.allvideos') , video_clips_path, :alt => t('nav.nagivation.allvideos') %></li>
+          <li><%= link_to t('nav.nagivation.videosunavailable'), video_clips_unavailables_path, :alt => t('nav.nagivation.videosunavailable') %></li>
+        </ul>
+      </li>
+      <!-- Lien pour les droits -->
+      <li><%= link_to t('nav.nagivation.rights'), rights_path, :alt => t('nav.nagivation.rights') %></li>
+      <!-- Lien pour les groups -->
+      <li><%= link_to t('nav.nagivation.groups'),  groups_path, :alt => t('nav.nagivation.groups') %></li>
+      <!-- Lien voir les groupes et leur droits -->
+      <li><%= link_to t('nav.nagivation.groupsrights'), group_right_management_path, :alt => t('nav.nagivation.groupsrights') %></li>
+      <!-- Lien pour les utilisateur -->
+      <li><%= link_to t('nav.nagivation.users'), people_path,  :alt => t('nav.nagivation.users') %></li>
+      <!-- Lien pour l'envoie des emails -->
+      <li><%= link_to t('nav.nagivation.sendmail'), sendmail_path,:alt => t('nav.nagivation.sendmail') %></li>
+      <!-- Lien pour la partie logs -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('nav.nagivation.logs') %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to t('nav.nagivation.logsystem'), logs_path(lines: 500), :alt => t('nav.nagivation.logsystem')  %></li>
+          <li><%= link_to t('nav.nagivation.logactivities'), activities_path, :alt => t('nav.nagivation.logactivities') %></li>
+        </ul>
+      </li>
+  <% else %>
+      <!-- Liens pour voir les videos -->
+      <li><%= link_to t('nav.nagivation.videos'), video_clips_path, :alt => t('nav.nagivation.videos') %></li>
+  <% end %>
+
+</ul>
+

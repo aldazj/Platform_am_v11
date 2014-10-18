@@ -1,0 +1,40 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1> <%= t('management.title') %> <small><%= t('management.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('management.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- On affiche chaque groupe avec les droits qu'il possède -->
+  <div class="containerLine">
+    <% @groups.each  do |group| %>
+        <ul class="containergroups">
+              <p>
+                <strong><%= t('name_label') %>:</strong>
+                <%= group.name %>
+              </p>
+
+              <p>
+                <strong><%= t('right.title') %>:</strong>
+                <% Right.all.each do |right| %>
+                    <div>
+                      <%= check_box_tag 'group[right_ids][]', right.id, group_right_present?(group.id, right.id)  %>
+                      <%= right.name %><br>
+                    </div>
+                <% end %>
+        </ul>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Par défault au début de charger cette page on cache les variables
+      pour la liste qui permet d'ordonnée dans l'ordre alphabetique
+ -->
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<!-- On affiche la table où il y a toutes les personnes -->
+<div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped tablesorter">
+    <thead class="pretty">
+    <tr>
+      <th><%= sortable t('person.lastname') %> <i class="fa fa-sort"></i></th>
+      <th><%= sortable t('person.firstname') %></th>
+      <th><%= t('person.email') %> </th>
+      <th><%= t('person.dateofbirth') %></th>
+      <th><%= t('person.private_phone') %></th>
+      <th><%= t('person.professional_phone') %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @people.each do |person| %>
+        <tr>
+          <td><%= person.lastname %></td>
+          <td><%= person.firstname %></td>
+          <td><%= person.email %></td>
+          <td><%= person.dateofbirth %></td>
+          <td><%= person.private_phone %></td>
+          <td><%= person.professional_phone %></td>
+          <td><%= link_to t('action.show'), person %></td>
+          <td><%= link_to t('action.edit'), edit_person_path(person) %></td>
+          <td><%= link_to t('action.destroy'), person, method: :delete, data: { confirm: t('action.destroyconfirme') } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <!-- On ajoute la pagination à notre liste -->
+  <%= will_paginate @people %>
+</div>
+
+<!--  Ajax/JQuery pour faire la pagination dynamiquement -->
+
+<script>
+    $(function(){
+        $('th a ,.pagination a').attr('data-remote', 'true')
+    });
+</script>

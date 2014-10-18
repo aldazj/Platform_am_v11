@@ -1,0 +1,22 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1> <%= t('video_clip.new.title') %> <small><%= t('video_clip.new.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('video_clip.new.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+    <!-- On affiche le formulaire pour une vidéo -->
+    <%= render 'form' %>
+    <%= link_to t('action.back'), video_clips_path, class:'btn btn-default' %>
+</div>

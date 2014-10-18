@@ -1,0 +1,10 @@
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+#Clés de sécurité pour Amazon S3
+
+development:
+  access_key_id: **********
+  secret_access_key: **********
+  bucket: **********

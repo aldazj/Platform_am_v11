@@ -1,0 +1,25 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('right.edit.title') %> <small><%= t('right.edit.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('right.edit.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- On affiche le formulaire -->
+  <%= render 'form' %>
+
+  <!-- liens pour le droit -->
+  <%= link_to t('action.show'), @right, class:'btn btn-default' %>
+  <%= link_to t('action.back'), rights_path, class:'btn btn-default' %>
+</div>

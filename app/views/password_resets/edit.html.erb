@@ -1,0 +1,46 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+<!-- Page qui nous permet de modifier un mot de passe -->
+<h3>Reset Password</h3>
+
+<!-- Pour afficher les messages erreurs -->
+<% if flash[:error] %>
+    <div id="error_explanation">
+      <ul>
+        <%= flash[:error] %>
+      </ul>
+    </div>
+<% end %>
+
+<!-- Formulaire pour modifier le mot de passe -->
+<%= form_for @person, :url => password_reset_path(params[:id]) do |f| %>
+    <% if @person.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+          <ul>
+            <% @person.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.password_field :password, :placeholder => 'Password' %>
+    </div>
+    <div class="field">
+      <%= f.label :'Confirm password' %><br>
+      <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %>
+    </div>
+
+    <div class="actions">
+       <%= f.submit "Update Password", class: 'btn btn-large btn-primary'  %>
+    </div>
+<% end %>
+

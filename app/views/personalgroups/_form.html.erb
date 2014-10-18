@@ -1,0 +1,31 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Formulaire pour un groupe personnel -->
+<%= form_for(@personalgroup) do |f| %>
+  <% if @personalgroup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@personalgroup.errors.count, "error") %> prohibited this personalgroup from being saved:</h2>
+
+      <!-- Pour affiche les message d'erreurs -->
+      <ul>
+      <% @personalgroup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- informations concernant un groupe personnel-->
+  <div class="field">
+    <%= f.label :person_id %><br>
+    <%= f.text_field :person_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

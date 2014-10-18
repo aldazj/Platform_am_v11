@@ -1,0 +1,15 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+
+<%= t('activity.admin.create') %>
+
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, activity.trackable %>
+<% else %>
+    <%= t('activity.msg_destroy') %>
+<% end %>

@@ -1,0 +1,9 @@
+//#####################################
+//# Aldaz Jayro               HEPIA
+//#
+//#####################################
+//On utilise du javascript pour faire une pagination dynamique
+//Des que le nombre des personnes qui appartiennent à un groupe devient grand
+//alors active la pagination. Juste une partie de la page est rechargée
+
+$("#people_belong_div").html("<%= escape_javascript(render("person_belongs")) %>");

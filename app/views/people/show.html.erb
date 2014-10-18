@@ -1,0 +1,120 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('person.show.title') %> <small><%= t('person.show.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> <%= t('person.show.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Pour afficher les messages envoyés par le controlleur -->
+  <p id="notice"><%= notice %></p>
+
+  <!-- Informations concernant une personne -->
+  <% if current_person.type == 'Admin'%>
+      <p>
+        <strong><%= t('person.type_account') %>:</strong>
+        <%= @person.type %>
+      </p>
+  <% end %>
+
+  <p>
+    <strong><%= t('person.lastname') %>:</strong>
+    <%= @person.lastname %>
+  </p>
+
+  <p>
+    <strong><%= t('person.firstname') %>:</strong>
+    <%= @person.firstname %>
+  </p>
+
+  <p>
+    <strong><%= t('person.password') %>:</strong>
+    <%= @person.password %>
+  </p>
+
+  <p>
+    <strong><%= t('person.email') %>:</strong>
+    <%= @person.email %>
+  </p>
+
+  <p>
+    <strong><%= t('person.dateofbirth') %>:</strong>
+    <%= @person.dateofbirth %>
+  </p>
+
+  <p>
+    <strong><%= t('person.private_phone') %>:</strong>
+    <%= @person.private_phone %>
+  </p>
+
+  <p>
+    <strong><%= t('person.professional_phone') %>:</strong>
+    <%= @person.professional_phone %>
+  </p>
+
+  <!-- Si on est administrateur on peut voir les groupes et droits d'une personne -->
+  <% if current_person.type == 'Admin' %>
+      <p>
+         <!-- On affiche les groupes auxquels une personne appartient -->
+         <strong><%= t('group.title') %>:</strong>
+         <ol>
+            <% Group.all.each do |group| %>
+                <div>
+                  <%= check_box_tag 'person[group_ids][]', group.id, group_present?(group.id)  %>
+                  <%= group.name %><br>
+                </div>
+            <% end %>
+         </ol>
+      </p>
+
+      <!-- On affiche les groupes auxquels une personne appartient -->
+      <p>
+        <strong><%= t('person.groups_rights_label') %>:</strong>
+        <% rightArray = Array.new %>
+          <!-- On récupère tous les droits de tous les groupes auxquels une personne appartient -->
+          <% @person.groups.each do |group| %>
+            <% group.rights.each do |right| %>
+                <% rightArray.push(right) %>
+            <% end %>
+          <% end %>
+        <!-- On enlève les droits qui se répetent -->
+        <% rightArray = rightArray.uniq %>
+        <!-- Parmis tous les droits, seuls ceux à qui une personne appartient sera séléctionné -->
+        <ol>
+            <% Right.all.each do |right| %>
+              <div>
+                <%= check_box_tag 'right.name', right.id, rightArray.include?(right)  %>
+                <%= right.name %><br>
+              </div>
+            <% end %>
+        </ol>
+      </p>
+
+      <!-- On affiche les droits du "groupe personnel" d'une personne -->
+      <div class="field">
+        <strong><%= t('person.personal_extra_rights_label') %>:</strong>
+        <ol>
+            <% Right.all.each do |right| %>
+                <div>
+                  <%= check_box_tag 'personalgroup[right_ids][]', right.id, personal_right_present?(right.id)%>
+                  <%= right.name %><br>
+                </div>
+            <% end %>
+        </ol>
+      </div>
+
+      <!-- liens pour une personne -->
+      <%= link_to t('action.edit') , edit_person_path(@person), class:'btn btn-default' %>
+      <%= link_to t('action.back'), people_path, class:'btn btn-default' %>
+  <% end %>
+</div>

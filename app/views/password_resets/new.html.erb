@@ -1,0 +1,34 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!-- Page qui nous permet savoir à quel email on va envoyer le lien pour modifier le mot de passe -->
+<div class="span8 offset3">
+  <% provide(:title, 'Reset Password') %>
+  <% if flash[:error] %>
+      <div id="error_explanation">
+        <ul>
+          <%= flash[:error] %>
+        </ul>
+      </div>
+  <% end %>
+  <!-- Pour afficher les messages envoyés par le controlleur -->
+  <% if flash[:notice] %>
+      <p id="error_explanation"><%= flash[:notice] %></p>
+  <% end %>
+    <h3>Reset Password</h3>
+    <%= form_tag password_resets_path, :method => :post do %>
+        <div class="field">
+          <%= label_tag :email %><br>
+          <%= text_field_tag :email, params[:email], :placeholder => "Enter your email..." %>
+        </div>
+        <div class="actions">
+          <%= submit_tag "Reset Password", class: 'btn btn-large btn-primary'  %>
+        </div>
+    <% end %>
+</div>
+
+

@@ -1,0 +1,61 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!-- En-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('activities.title') %>  <small><%= t('activities.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> <%= t('activities.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Pour afficher certains messages envoyés par le controlleur -->
+  <p id="notice"><%= flash[:notice] %></p>
+
+  <!-- On affiche toutes les activities existantes -->
+  <!--
+      arg[0] => model
+      arg[1] => activity
+  -->
+  <div class="activity_div">
+      <% @activities.each do |activity| %>
+          <div class="activity">
+            <% if activity.key.split('.')[1] == 'update' %>
+                <%= image_tag 'edit_icon.png' %>
+            <% elsif activity.key.split('.')[1] == 'destroy' %>
+                <%= image_tag 'delete_icon.png' %>
+            <% elsif activity.key.split('.')[1] == 'create' %>
+                <% if activity.key.split('.')[0] == 'comment' %>
+                    <%= image_tag 'comment_icon.png' %>
+                <% else %>
+                    <%= image_tag 'create_icon.png' %>
+                <% end %>
+            <% elsif activity.key.split('.')[1] == 'show' %>
+                <%= image_tag 'show_icon.png' %>
+            <% elsif activity.key.split('.')[1] == 'download' %>
+                <%= image_tag 'download_light_gray.png', :width => 40, :height => 40 %>
+            <% elsif activity.key.split('.')[1] == 'sendvideo' %>
+                <%= image_tag 'sendvideo_icon.png', :width => 40, :height => 40 %>
+            <% end %>
+              <!-- On crée des liens  -->
+              <%= link_to activity.owner.name, activity.owner if activity.owner %>
+              <%= render_activity activity %>
+          </div>
+      <% end %>
+  </div>
+  <br>
+  <div>
+    <!-- Un botton qui efface la liste d'activities-->
+    <%= form_tag remove_all_path do %>
+        <%= submit_tag t('activity.remove_activities'), class:'btn btn-default'  %>
+    <% end %>
+  </div>
+</div>
+

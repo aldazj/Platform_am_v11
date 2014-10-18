@@ -1,0 +1,23 @@
+// Place all the styles related to the people controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//#####################################
+//# Aldaz Jayro               HEPIA
+//#
+//#####################################
+//Css de la liste qui se trouve à la page index du model person
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+  background-image: url(up_arrow.gif);
+}
+
+.pretty  th .desc {
+  background-image: url(down_arrow.gif);
+}

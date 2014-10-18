@@ -1,0 +1,48 @@
+<ul class="containervideo">
+  <li class="videoitem">
+    <div class="imagevideo">
+      <!-- On récupère la vignette qui représente la vidéo-->
+      <% link = nil %>
+      <% video_clip.thumbnails.each do |thumbnail|%>
+          <% if thumbnail.main_thumbnail == true %>
+              <% link = thumbnail.image.url(:thumb) %>
+              <% break %>
+          <% end %>
+      <% end  %>
+
+      <!-- On affiche la vidéo (image, lien)-->
+      <%= link_to( image_tag( link,
+                              title: video_clip.title,
+                              alt:   video_clip.title,
+                              size:  '175x98'), :action => 'show', :id => video_clip)
+      %>
+
+    </div>
+
+    <!-- Partie au dessus de l'image de la vidéo -->
+    <div class="containerTitle">
+      <!-- titre de la video -->
+      <div class="title">
+        <%= link_to(video_clip.title, video_clip) %>
+      </div>
+
+      <!-- Propriétaire et views de la vidéo -->
+      <div class="titlecontainer">
+        <div>
+          <%= t('video_clip.by') %> <% @owner = Person.find_by_id(video_clip.person_id) %> <%= @owner.lastname.upcase %> <%= @owner.firstname %>
+        </div>
+        <div>
+          <%= t('video_clip.views') %> <%= video_clip.views %>
+        </div>
+      </div>
+
+      <!-- Accès pour modifier et effacer une vidéo -->
+      <% if current_person.type == 'Admin' || current_person_is_video_owner?(video_clip) %>
+          <div class="adminAction">
+            <%= link_to t('action.edit'), edit_video_clip_path(:id => video_clip) %>
+            <%= link_to t('action.destroy'), video_clip, method: :delete, data: { confirm: t('action.destroyconfirme') } %>
+          </div>
+      <% end %>
+    </div>
+  </li>
+</ul>

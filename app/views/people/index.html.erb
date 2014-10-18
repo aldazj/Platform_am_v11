@@ -1,0 +1,40 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('person.title') %>  <small><%= t('person.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> <%= t('person.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Pour chercher dynamiquement une personne -->
+  <%= form_tag people_path, :method => 'get', :id => 'people_search' do %>
+      <p>
+        <%= text_field_tag :q, params[:q] %>
+        <%= submit_tag  t('search_label'), :lastname => nil %>
+      </p>
+      <div>
+        <div class="row">
+          <div class="col-lg-6">
+            <!-- Liste qui changera à chaque fois qu'on cherche une personne -->
+            <div id="people_div"> <%= render 'people' %> </div>
+          </div>
+        </div><!-- /.row -->
+      </div>
+  <% end %>
+
+  <!-- lien si on veut ajouter une nouvelle personne -->
+  <%= link_to t('person.new_person_label'), new_person_path, class:'btn btn-default' %>
+  <br>
+</div>
+
+

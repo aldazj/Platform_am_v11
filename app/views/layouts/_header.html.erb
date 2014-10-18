@@ -1,0 +1,62 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="wrapper">
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <%= link_to t('navbar.header.company'), video_clips_path, :class => 'navbar-brand' %>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <!-- Navigation Bar -->
+          <%= render :partial => 'shared/navigation' %>
+          <ul class="nav navbar-nav navbar-right navbar-user">
+          <!-- Partie qui séléctionne la langue de notre application -->
+            <li class="dropdown messages-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= I18n.locale %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li> <%= link_to "en", locale: :en if I18n.locale != :en %> </li>
+                <li> <%= link_to "fr", locale: :fr if I18n.locale != :fr %> </li>
+              </ul>
+            </li>
+
+            <!-- Selon les droits qu'on a, on donne accès au bouton Upload -->
+            <!-- On vérifie si d'abord dans les droits du groupe personnel d'une personne -->
+            <!-- Et apres dans les droits d'un groupe général -->
+            <% if right_in_current_person_personalgroup?('Upload') %>
+                    <li class="dropdown alerts-dropdown">
+                    <li><%= link_to t('navbar.header.rights.upload'), new_video_clip_path %></li>
+                </li>
+            <% else %>
+                <% if current_person_groups_enable? %>
+                        <% if right_in_current_person_groups?('Upload') %>
+                            <li class="dropdown alerts-dropdown">
+                                <li><%= link_to t('navbar.header.rights.upload'), new_video_clip_path %></li>
+                        </li>
+                        <% end %>
+                <% end %>
+            <% end %>
+
+            <!-- Partie où il y a l'accès au profil, l'édition du profil et la déconnection -->
+            <li class="dropdown user-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_person.type.upcase%> <%= current_person.lastname  %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to t('navbar.header.profile'), current_person %></li>
+                <li class="divider"></li>
+                <li><%= link_to t('navbar.header.edit_profile'), edit_person_path(current_person) %></li>
+                <li class="divider"></li>
+                <li> <%= link_to t('navbar.header.sign_out'), signout_path, method: 'delete' %> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</div><!-- /#wrapper -->

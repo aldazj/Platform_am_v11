@@ -1,0 +1,35 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Page principale qui affiche les vidéos -->
+<div class="containerLine">
+<% @video_clips.each do |video_clip| %>
+    <!-- On contrôle les vidéos qui doivent être affichées -->
+    <% if current_person.type != 'Admin' %>
+        <% if !current_person_is_video_owner?(video_clip) %>
+            <% if current_person_video_groups_present?(video_clip) %>
+                <% if video_clip.is_available? %>
+                    <%= render 'video_clip', {:video_clip => video_clip} %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <%= render 'video_clip', {:video_clip => video_clip} %>
+        <% end %>
+    <% else %>
+      <%= render 'video_clip', {:video_clip => video_clip} %>
+    <% end %>
+<% end %>
+</div>
+<!-- Pagination de cette page où il y a toutes les images de vidéos -->
+<%= will_paginate @video_clips %>
+
+<!-- Ajax/JQuery pour faire la pagination dynamiquement -->
+<script>
+    $(function(){
+        $('.pagination a').attr('data-remote', 'true')
+    });
+</script>

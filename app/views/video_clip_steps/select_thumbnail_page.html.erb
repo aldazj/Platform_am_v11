@@ -1,0 +1,67 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('video_clips_step.select_thumbnails_page.title') %>  <small><%= t('video_clips_step.select_thumbnails_page.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('video_clips_step.select_thumbnails_page.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+    <!-- Formulaire pour selectionner la vignette qui va représenter une video -->
+    <%= form_for(@video_clip , url: wizard_path, :html => {:multipart => true}) do |f| %>
+        <!-- Pour afficher les messages envoyés par le controlleur -->
+        <% if @video_clip.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@video_clip.errors.count, "error") %> prohibited this video_clip from being saved:</h2>
+
+              <ul>
+                <% @video_clip.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <!-- on recupère l'id de la video en traitement
+             pour s'assuré qu'on travaille avec la même video
+        -->
+        <%= f.hidden_field :video_clip_id, value:@video_clip.id unless @video_clip.nil? %>
+
+         <!-- On affiche les vignettes de notre vidéo -->
+        <div class="field">
+          <%= f.label t('video_clip.form.represent_thumb_label') %><br>
+          <% if !(f.object.new_record?) %>
+              <div class="assetsVideo">
+                <ul>
+                  <%= f.fields_for :thumbnails do |thumbnail| %>
+                      <li>
+                        <% unless thumbnail.object.new_record? %>
+                            <%= link_to image_tag(thumbnail.object.image.url(:thumb)),
+                                        thumbnail.object.image.url(:original) %><br>
+                            <%= thumbnail.label t('video_clip.form.select_thumb_label') %>
+                            <!-- Pour séléctionner la video qui représentera la vidéo
+                                 La valeur par default du radio button est à faux
+                            -->
+                            <%= radio_button_tag(:main_thumbnail, thumbnail.object.id, false) %>
+                        <% end %>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit t('action.finish') %>
+        </div>
+    <% end %>
+</div>

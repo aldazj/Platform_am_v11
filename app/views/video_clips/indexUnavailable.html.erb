@@ -1,0 +1,29 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= t('video_clip.index_unavailable.title') %>  <small><%= t('video_clip.index.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i>  <%= t('video_clip.index_unavailable.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Pour chercher dynamiquement une vidéo indisponible -->
+  <%= form_tag video_clips_unavailables_path, :method => 'get', :id => 'video_clips_unavailable_search' do %>
+      <p>
+        <%= text_field_tag :q, params[:q] %>
+        <%= submit_tag t('search_label'), :title => nil %>
+      </p>
+      <!-- On affiche les vidéos indisponibles -->
+      <div id="video_clips_unavailable_div">  <%= render 'video_clips_unavailable' %></div>
+  <% end %>
+
+</div>

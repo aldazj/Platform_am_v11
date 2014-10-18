@@ -1,0 +1,22 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  en-tête -->
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1> <%= t('right.new.title') %> <small><%= t('right.new.description') %></small></h1>
+      <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> <%= t('right.new.title') %> </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Formulaire pour un droit -->
+  <%= render 'form' %>
+  <%= link_to t('action.back'), rights_path, class:'btn btn-default' %>
+</div>

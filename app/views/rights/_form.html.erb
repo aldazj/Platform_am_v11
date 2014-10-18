@@ -1,0 +1,35 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!-- Formulaire pour un droit -->
+<%= form_for(@right) do |f| %>
+
+  <!-- On affiche les erreurs envoyés par le controlleur -->
+  <% if @right.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@right.errors.count, "error") %> prohibited this right from being saved:</h2>
+      <ul>
+      <% @right.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Information concernant un droit-->
+  <div class="field">
+    <%= f.label t('name_label') %><br>
+    <%= f.text_field :name, :placeholder => t('name_label'), :autocomplete => :off  %>
+  </div>
+  <div class="field">
+    <%= f.label t('availability') %><br>
+    <%= f.check_box :is_available %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

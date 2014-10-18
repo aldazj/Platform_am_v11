@@ -1,0 +1,421 @@
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+#Fichier qui traduit notre plate-forme vidéo en Français
+
+# French translations for Ruby on Rails
+# by Christian Lescuyer (christian@flyingcoders.com)
+# contributors:
+# - Sebastien Grosjean - ZenCocoon.com
+# - Bruno Michel - http://github.com/nono
+# - Tsutomu Kuroda - http://github.com/kuroda (t-kuroda@oiax.jp)
+# Emended by Benjamin des Gachons and Patrick Chew : <http://www.fitima.org/docs/fiche.pdf>
+
+fr:
+  date:
+    abbr_day_names:
+      - dim
+      - lun
+      - mar
+      - mer
+      - jeu
+      - ven
+      - sam
+    abbr_month_names:
+      - ~
+      - jan.
+      - fév.
+      - mar.
+      - avr.
+      - mai
+      - juin
+      - juil.
+      - août
+      - sept.
+      - oct.
+      - nov.
+      - déc.
+    day_names:
+      - dimanche
+      - lundi
+      - mardi
+      - mercredi
+      - jeudi
+      - vendredi
+      - samedi
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+    month_names:
+      - ~
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
+    order:
+      - :day
+      - :month
+      - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "environ une heure"
+        other: "environ %{count} heures"
+      about_x_months:
+        one: "environ un mois"
+        other: "environ %{count} mois"
+      about_x_years:
+        one: "environ un an"
+        other: "environ %{count} ans"
+      almost_x_years:
+        one: "presqu'un an"
+        other: "presque %{count} ans"
+      half_a_minute: "une demi-minute"
+      less_than_x_minutes:
+        zero: "moins d'une minute"
+        one: "moins d'une minute"
+        other: "moins de %{count} minutes"
+      less_than_x_seconds:
+        zero: "moins d'une seconde"
+        one: "moins d'une seconde"
+        other: "moins de %{count} secondes"
+      over_x_years:
+        one: "plus d'un an"
+        other: "plus de %{count} ans"
+      x_days:
+        one: "1 jour"
+        other: "%{count} jours"
+      x_minutes:
+        one: "1 minute"
+        other: "%{count} minutes"
+      x_months:
+        one: "1 mois"
+        other: "%{count} mois"
+      x_seconds:
+        one: "1 seconde"
+        other: "%{count} secondes"
+    prompts:
+      day: "Jour"
+      hour: "Heure"
+      minute: "Minute"
+      month: "Mois"
+      second: "Seconde"
+      year: "Année"
+  errors:
+    format: "%{attribute} %{message}"
+    messages: &errors_messages
+      accepted: "doit être accepté(e)"
+      blank: "doit être rempli(e)"
+      present: "doit être vide"
+      confirmation: "ne concorde pas avec la confirmation"
+      empty: "doit être rempli(e)"
+      equal_to: "doit être égal à %{count}"
+      even: "doit être pair"
+      exclusion: "n'est pas disponible"
+      greater_than: "doit être supérieur à %{count}"
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+      inclusion: "n'est pas inclus(e) dans la liste"
+      invalid: "n'est pas valide"
+      less_than: "doit être inférieur à %{count}"
+      less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
+      not_a_number: "n'est pas un nombre"
+      not_an_integer: "doit être un nombre entier"
+      odd: "doit être impair"
+      record_invalid: "La validation a échoué : %{errors}"
+      restrict_dependent_destroy:
+        one: "Suppression impossible: un autre enregistrement est lié"
+        many: "Suppression impossible: d'autres enregistrements sont liés"
+      taken: "n'est pas disponible"
+      too_long:
+        one: "est trop long (pas plus d'un caractère)"
+        other: "est trop long (pas plus de %{count} caractères)"
+      too_short:
+        one: "est trop court (au moins un caractère)"
+        other: "est trop court (au moins %{count} caractères)"
+      wrong_length:
+        one: "ne fait pas la bonne longueur (doit comporter un seul caractère)"
+        other: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
+      other_than: "doit être différent de %{count}"
+    template: &errors_template
+      body: "Veuillez vérifier les champs suivants : "
+      header:
+        one: "Impossible d'enregistrer ce(tte) %{model} : 1 erreur"
+        other: "Impossible d'enregistrer ce(tte) %{model} : %{count} erreurs"
+  helpers:
+    select:
+      prompt: "Veuillez sélectionner"
+    submit:
+      create: "Créer un(e) %{model}"
+      submit: "Enregistrer ce(tte) %{model}"
+      update: "Modifier ce(tte) %{model}"
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: " "
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: "milliard"
+          million: "million"
+          quadrillion: "million de milliards"
+          thousand: "millier"
+          trillion: "billion"
+          unit: ""
+      format:
+        delimiter: ""
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "octet"
+            other: "octets"
+          gb: "Go"
+          kb: "ko"
+          mb: "Mo"
+          tb: "To"
+    percentage:
+      format:
+        delimiter: ""
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ""
+  support:
+    array:
+      last_word_connector: " et "
+      two_words_connector: " et "
+      words_connector: ", "
+  time:
+    am: 'am'
+    formats:
+      default: "%d %B %Y %H:%M:%S"
+      long: "%A %d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: 'pm'
+  nav:
+    nagivation:
+      allvideos: "Vidéos"
+      videosunavailable: "Vidéos Indisponibles"
+      rights: "Droits"
+      groups: "Groupes"
+      groupsrights: "Groupes & Droits"
+      users: "Utilisateurs"
+      sendmail: "Envoyer Mail"
+      logs: "Logs"
+      logsystem: "Système"
+      logactivities: "Activités"
+      videos: "Vidéos"
+  navbar:
+    header:
+      company: "4AM Video"
+      profile: "Profile"
+      edit_profile: "Éditer Profile"
+      sign_out: "Se déconnecter"
+      rights:
+        upload: "Charger"
+        download: "Télécharger"
+        comment: "Commenter"
+  video_clip:
+    title: "Titre:"
+    videos_label: "Vidéos"
+    description: "Description:"
+    views: "Vues: "
+    created_at: "Chargée le: "
+    by: "De: "
+    index:
+      title: "Mes vidéos"
+      description: "Liste de vidéos"
+    index_unavailable:
+      title: "Videos Indisponibles"
+    new:
+      title: "Chargement d'une vidéo"
+      description: "Charger une vidéo"
+    form:
+      select_video_label: "Sélectionner une vidéo"
+      select_video_remote_label: "Entrer l'Url d'une vidéo distante"
+      select_video_remote_placeholder: "Url vidéo distante"
+      add_extra_thumb_label: "Ajouter des vignettes supplémentaires"
+      thumbnails_label: "Vignettes"
+      represent_thumb_label: "Sélectionner la vignette qui représentera la vidéo"
+      select_thumb_label: "Sélectionner"
+      add_groups_label: "Visible par"
+    edit:
+      title: "Éditer la vidéo"
+      description: "Éditer"
+    show:
+      title: "Regarder la vidéo"
+      description: "vidéo"
+
+  video_clips_step:
+    thumbnails_page:
+      title: "Génération des vignettes"
+      description: "gestion"
+    select_thumbnails_page:
+      title: "Sélection de vignette"
+      description: "selectionner"
+
+  comment:
+    name: "Commenter"
+    message: "Message"
+    submit_comment_label: "Commenter"
+    comments_label: "Commentaires"
+    no_comments_label: "Aucun commentaire"
+
+  right:
+    title: "Droits"
+    description: "Liste des droits"
+    new_right_label: "Créer droit"
+    show:
+      title: "Montrer droit"
+      description: "Droit"
+    new:
+      title: "Créer Droit"
+      description: "Droit"
+    edit:
+      title: "Éditer Droit"
+      description: "Éditer le droit"
+    created_msg: "Le droit a été correctement créé."
+    updated_msg: "Le droit a été correctement mis à jour."
+
+  group:
+    title: "Groupes"
+    description: "Liste des groupes"
+    new_group_label: "Créer groupe"
+    show:
+      title: "Montrer groupe"
+      description: "Groupe"
+    new:
+      title: "Créer Groupe"
+      description: "Groupe"
+    edit:
+      title: "Éditer Groupe"
+      description: "Éditer le groupe"
+    created_msg: "Le groupe a été correctement créé."
+    updated_msg: "Le groupe a été correctement mis à jour."
+
+  management:
+    title: "Gestion"
+    description: "Groupes & Droites"
+
+  person:
+    title: "Utilisateurs"
+    description: "Liste des utilisateurs"
+    new_person_label: "Créer Utilisateur"
+    lastname: "Nom_de_Famille"
+    firstname: "Prénom"
+    email: "Email"
+    dateofbirth: "Date_Naissance"
+    type_account: "Type de compte"
+    password: "Mot de passe"
+    confirm_password: "Confirmation mot de passe"
+    private_phone: "Téléphone_Privé"
+    professional_phone: "Téléphone_Prof."
+    belong_to_group_label: "Personnes appartenant au groupe"
+    groups_rights_label: "Groupes Droits"
+    personal_extra_rights_label: "Droits personnels supplémentaires"
+    add_groups_label: "Ajouter groupes"
+    add_extra_right_label: "Ajouter des droits extras"
+    show:
+      title: "Montrer Utilisateur"
+      description: "Utilisateur"
+    new:
+      title: "Créer Utilisateur"
+      description: "Utilisateur"
+    edit:
+      title: "Éditer Utilisateur"
+      description: "Utilisateur"
+    created_msg: "L'utilisateur a été correctement créé."
+    updated_msg: "L'utilisateur a été correctement mis à jour."
+
+  sendmail:
+    title: "Envoyer mail"
+    description: "Envoyer mail"
+    subject: "Objet..."
+    send: "Envoyer"
+    confirmation_title: "Confirmation mail"
+    confirmation_description: "mail"
+    message: "Le mail a bien été envoyé!!"
+    msg_add_recipients: 'Entrer les destinataires'
+
+  logs:
+    title: "Logs du Système"
+    description: "Logs"
+
+  activities:
+     title: "Logs Activités"
+     description: "Utilisateurs"
+
+  action:
+    show: "Montrer"
+    edit: "Éditer"
+    destroy: "Effacer"
+    destroyconfirme: "Êtes-vous sûr?"
+    back: "Précédent"
+    continue: "Continuer"
+    finish: "Terminer"
+
+
+  search_label: "Chercher"
+  availability: "Disponibilité"
+  date_label: "Date"
+  created_at: "Créé le"
+  deleted_at: "Effacé le"
+  Owner: "De"
+  name_label: "Nom"
+
+  activity:
+    video_clip:
+      create: 'a ajouté une vidéo appelée'
+      update: 'a mis à jour une vidéo appelée'
+      show: 'a regardé une vidéo appelée'
+      destroy: 'a effacé une vidéo!!'
+      download: 'a téléchargé une vidéo appelée'
+      sent_video: 'a envoyé une vidéo appelée'
+      to_group: 'au groupe'
+      to_user: 'à l utilisateur'
+
+    comment:
+      create: 'a ajouté un commentaire à'
+      update: 'a mis à jour un commentaire'
+      destroy: 'a effacé un commentaire!!'
+    group:
+      create: 'a ajouté un groupe appelé'
+      destroy: 'a effacé un groupe!!'
+    right:
+      create: 'a ajouté un droit appelé'
+      destroy: 'a effacé un droit!!'
+    user:
+      create: 'a ajouté un utilisateur appelé'
+      destroy: 'a effacé un utilisateur!'
+    admin:
+      create: 'a ajouté un administrateur appelé'
+      destroy: 'a effacé un administrateur!!'
+    msg_destroy: 'qui a été effacé'
+    meg_remove_activities: "Vous avez effacé toutes les activités!"
+    remove_activities: "Effacer les activités"

@@ -1,0 +1,31 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<%= t('activity.video_clip.sent_video') %>
+
+<% if activity.trackable %>
+    <%= link_to activity.trackable.title, activity.trackable %>
+    <% if !activity.recipient_id.nil? %>
+        <% if activity.recipient_type == 'Person' %>
+            <% dest_person = Person.find_by_id(activity.recipient_id) %>
+            <% if dest_person %>
+                <%= t('activity.video_clip.to_user')%> <%= link_to dest_person.name, dest_person %>
+            <% else %>
+                <%= t('activity.video_clip.to_user')%> <%= t('activity.msg_destroy') %>
+            <% end %>
+        <% elsif activity.recipient_type == 'Group' %>
+            <% dest_group = Group.find_by_id(activity.recipient_id) %>
+            <% if dest_group %>
+                <%= t('activity.video_clip.to_group')%> <%= link_to dest_group.name, dest_group %>
+            <% else %>
+                <%= t('activity.video_clip.to_group')%> <%= t('activity.msg_destroy') %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% else %>
+    <%= t('activity.msg_destroy') %>
+<% end %>

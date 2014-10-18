@@ -1,0 +1,46 @@
+<!--
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+-->
+
+<!--  Page principale de l'application -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>4AM Video</title>
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+
+  <!-- Partie où on initialise tout ce qui concerne au CSS, Javascript ou applications extérieurs-->
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
+  <%= javascript_include_tag 'jquery.tokeninput' %>
+  <%#= javascript_include_tag 'jquery.uploadProgress' %>
+
+  <%= jwplayer_assets %>
+  <!--
+  <script type="text/javascript">jwplayer.key="ABCDEFGHIJKLMOPQ";</script>
+  -->
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Corps de toutes les pages -->
+    <% if signed_in? %>
+        <%= render :partial => 'layouts/header' %>
+        <div id="wrapper">
+            <!-- Partie que sera remplacée par toutes les autres pages -->
+            <%= yield %>
+        </div>
+    <% else %>
+        <div id= "page-wrapper">
+            <%= yield %>
+        </div>
+    <% end %>
+</body>
+
+</html>

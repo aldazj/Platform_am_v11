@@ -1,0 +1,435 @@
+#####################################
+# Aldaz Jayro               HEPIA
+#
+#####################################
+#Fichier qui traduit notre plate-forme vidéo en Anglais
+
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%B %d, %Y'
+      short: ! '%b %d'
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: ! '%{count} days'
+      x_minutes:
+        one: 1 minute
+        other: ! '%{count} minutes'
+      x_months:
+        one: 1 month
+        other: ! '%{count} months'
+      x_seconds:
+        one: 1 second
+        other: ! '%{count} seconds'
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors:
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      present: must be blank
+      confirmation: ! "doesn't match %{attribute}"
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      record_invalid: ! 'Validation failed: %{errors}'
+      restrict_dependent_destroy:
+        one: "Cannot delete record because a dependent %{record} exists"
+        many: "Cannot delete record because dependent %{record} exist"
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: "must be other than %{count}"
+    template:
+      body: ! 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: ! '%{count} errors prohibited this %{model} from being saved'
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%u%n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: $
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', and '
+      two_words_connector: ! ' and '
+      words_connector: ! ', '
+  time:
+    am: am
+    formats:
+      default: ! '%a, %d %b %Y %H:%M:%S %z'
+      long: ! '%B %d, %Y %H:%M'
+      short: ! '%d %b %H:%M'
+    pm: pm
+  nav:
+    nagivation:
+      allvideos: "All videos"
+      videosunavailable: "Videos unavailable"
+      rights: "Rights"
+      groups: "Groups"
+      groupsrights: "Groups & Rights"
+      users: "Users"
+      sendmail: "Send Mail"
+      logs: "Logs"
+      logsystem: "System"
+      logactivities: "Activities"
+      videos: "Videos"
+
+  navbar:
+    header:
+      company: "4AM Video"
+      profile: "Profile"
+      edit_profile: "Edit Profile"
+      sign_out: "Sign out"
+      rights:
+        upload: "Upload"
+        download: "Download"
+        comment: "Comment"
+
+  video_clip:
+    title: "Title:"
+    videos_label: "Videos"
+    description: "Description:"
+    views: "Views: "
+    created_at: "Uploaded on: "
+    by: "By: "
+    index:
+      title: "Myvideos"
+      description: "List videos"
+    index_unavailable:
+      title: "Videos unavailable"
+    new:
+      title: "Upload Video"
+      description: "Upload Video"
+    form:
+      select_video_label: "Select a video"
+      select_video_remote_label: "Enter a remote video url"
+      select_video_remote_placeholder: "Path Remote Video"
+      add_extra_thumb_label: "Add Extras Thumbnails"
+      thumbnails_label: "Thumbnails"
+      represent_thumb_label: "Select a thumbnail who will represent video:"
+      select_thumb_label: "Select"
+      add_groups_label: "Visible by"
+    edit:
+      title: "Edit Video"
+      description: "Editing video"
+    show:
+      title: "Show Video"
+      description: "Show Video"
+
+  video_clips_step:
+    thumbnails_page:
+      title: "Thumbnails generated"
+      description: "management"
+    select_thumbnails_page:
+      title: "Thumbnails"
+      description: "selection"
+
+  comment:
+    name: "Comment"
+    message: "Message"
+    submit_comment_label: "Post Comment"
+    comments_label: "Comments"
+    no_comments_label: "No comments"
+
+  right:
+    title: "Rights"
+    description: "List Rights"
+    new_right_label: "New Right"
+    show:
+      title: "Show Right"
+      description: "Right"
+    new:
+      title: "Create Right"
+      description: "Right"
+    edit:
+      title: "Edit Right"
+      description: "Editing right"
+    created_msg: "Right was successfully created."
+    updated_msg: "Right was successfully updated."
+
+
+  group:
+    title: "Groups"
+    description: "List Groups"
+    new_group_label: "New Group"
+    show:
+      title: "Show Group"
+      description: "Group"
+    new:
+      title: "Create Group"
+      description: "Group"
+    edit:
+      title: "Edit Group"
+      description: "Editing group"
+    created_msg: "Group was successfully created."
+    updated_msg: "Group was successfully updated."
+
+  management:
+    title: "Management"
+    description: "Groups & Rights"
+
+  person:
+    title: "Users"
+    description: "Listing Users"
+    new_person_label: "New Person"
+    lastname: "Lastname"
+    firstname: "Firstname"
+    email: "Email"
+    dateofbirth: "Date_Of_Birth"
+    type_account: "Type Account"
+    password: "Password"
+    confirm_password: "Confirm password"
+    private_phone: "Private_Phone"
+    professional_phone: "Professional_Phone"
+    belong_to_group_label: "People belonging to group"
+    groups_rights_label: "Groups Rights"
+    personal_extra_rights_label: "Personal extras rights"
+    add_groups_label: "Add groups"
+    add_extra_right_label: "Add extra rights"
+    show:
+      title: "Show User"
+      description: "Show User"
+    new:
+      title: "Create User"
+      description: "Create User"
+    edit:
+      title: "Edit User"
+      description: "Edit user"
+    created_msg: "User was successfully created."
+    updated_msg: "User was successfully updated."
+
+  sendmail:
+    title: "Send mail"
+    description: "Send mail"
+    subject: "Subject..."
+    send: "Send"
+    confirmation_title: "Confirmation mail"
+    confirmation_description: "mail"
+    message: "Emails are sent!!"
+    msg_add_recipients: 'Add recipients'
+
+  logs:
+    title: "Logs System"
+    description: "System"
+
+  activities:
+     title: "Logs Activities"
+     description: "Users"
+
+  action:
+    show: "Show"
+    edit: "Edit"
+    destroy: "Delete"
+    destroyconfirme: "Are you sure?"
+    back: "Back"
+    continue: "Continue"
+    finish: "Finish"
+
+  search_label: "Search"
+  availability: "Availability"
+  date_label: "Date"
+  created_at: "Created at"
+  deleted_at: "Deleted at"
+  Owner: "Owner"
+  name_label: "Name"
+
+  activity:
+    video_clip:
+      create: 'added a video clip called'
+      update: 'updated a video clip called'
+      show: 'watched a video clip called'
+      destroy: 'removed a video clip!'
+      download: 'downloaded a video clip called'
+      sent_video: 'has sent a video clip called'
+      to_group: 'to the group'
+      to_user: 'to the user'
+    comment:
+      create: 'added a comment to'
+      update: 'updated a comment'
+      destroy: 'removed a comment!'
+    group:
+      create: 'added a group called'
+      destroy: 'removed a group!'
+    right:
+      create: 'added a right called'
+      destroy: 'removed a right!'
+    user:
+      create: 'added an user called'
+      destroy: 'removed an user!'
+    admin:
+      create: 'added an admin called'
+      destroy: 'removed an admin!'
+
+    msg_destroy: 'which has since been removed'
+    meg_remove_activities: "You have removed all activities!"
+    remove_activities: "Remove Activities"
